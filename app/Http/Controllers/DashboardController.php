@@ -8,15 +8,22 @@ class DashboardController extends Controller
 {
     public function index()
 {
-    // Jika belum implementasi database
-    // role masih dummy — nanti kita ubah
-    $role = session('role', 'admin'); // default admin supaya tes
+    $sosial = session('sosial', []);
+    $totalSosial = count($sosial);
 
-    if ($role == 'admin') {
-        return view('dashboard.admin');
-    } else {
-        return view('dashboard.warga');
+    $thisMonth = date('Y-m');
+    $monthCount = 0;
+    $perMonth = [];
+    foreach ($sosial as $it) {
+        $m = date('Y-m', strtotime($it['tanggal'] ?? $it['created_at']));
+        if (!isset($perMonth[$m])) $perMonth[$m] = 0;
+        $perMonth[$m]++;
+        if ($m == $thisMonth) $monthCount++;
     }
+    ksort($perMonth);
+
+    return view('dashboard.admin', compact('totalSosial','monthCount','perMonth'));
 }
+
 
 }

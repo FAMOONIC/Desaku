@@ -48,7 +48,7 @@
             <p>Rapat RT/RW — 10 Des 2025</p>
         </div>
     </div>
-
+    
     <div class="col-md-4">
         <div class="card card-info p-3">
             <h5 class="fw-bold">Profil Desa</h5>
@@ -59,6 +59,28 @@
             <button class="btn btn-success w-100">Lihat Profil Lengkap</button>
         </div>
     </div>
+    </div>
+    
+    <div class="card mb-3">
+  <div class="card-body">
+    <h6>Statistik Kegiatan Sosial</h6>
+    <canvas id="sosialChart" height="80"></canvas>
+  </div>
 </div>
+
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const labels = {!! json_encode(array_keys($perMonth)) !!};
+const data = {!! json_encode(array_values($perMonth)) !!};
+const ctx = document.getElementById('sosialChart').getContext('2d');
+new Chart(ctx, {
+    type: 'bar',
+    data: { labels: labels, datasets: [{ label: 'Kegiatan per bulan', data: data }] },
+    options: { responsive: true }
+});
+</script>
+@endpush
 
 @endsection

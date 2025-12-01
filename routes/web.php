@@ -47,3 +47,11 @@ Route::get('/peraturan/delete/{id}', [MenuController::class, 'deletePeraturan'])
 
 // Print all peraturan to PDF
 Route::get('/peraturan/print-all', [MenuController::class, 'printAllPeraturan'])->name('peraturan.printAll');
+
+// kegiatan sosial
+Route::get('/kegiatan-sosial', [MenuController::class, 'sosial'])->name('sosial');
+Route::post('/kegiatan-sosial/store', [MenuController::class, 'storeSosial'])->name('sosial.store');
+Route::post('/kegiatan-sosial/update', [MenuController::class, 'updateSosial'])->name('sosial.update');
+Route::get('/kegiatan-sosial/delete/{id}', [MenuController::class, 'deleteSosial'])->name('sosial.delete');
+Route::get('/kegiatan-sosial/print', [MenuController::class, 'printSosial'])->name('sosial.print');
+Route::get('/kegiatan-sosial/stats', [MenuController::class, 'sosialStats'])->name('sosial.stats');
