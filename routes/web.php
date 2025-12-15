@@ -15,6 +15,13 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 
 // Proses login (dummy)
 Route::post('/login', [AuthController::class, 'login'])->name('login.process');
+// Register warga (sementara)
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'storeRegister'])->name('register.store');
+
+// Logout
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 // Dashboard (admin / warga sesuai role)
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
